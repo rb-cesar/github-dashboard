@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Avatar, Text } from 'grommet';
-import type { User } from '../../providers/UserProvider/UserTypes';
+import type { User } from '@/queries/user/types';
 
 interface Props {
   user: User;
