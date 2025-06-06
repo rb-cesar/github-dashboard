@@ -1,54 +1,103 @@
-# React + TypeScript + Vite
+# 📊 GitHub Dashboard
+Um painel interativo desenvolvido com **React**, **TypeScript** e **Vite**, que consome a API pública do GitHub para exibir dados de usuários, repositórios e estrelas em forma visual e organizada.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🧠 Visão Geral
+Este projeto foi arquitetado para ser modular, testável e escalável.
+A estrutura é baseada na separação de responsabilidades com o padrão View + Controller, além de um sistema organizado para queries e serviços de API.
 
-Currently, two official plugins are available:
+## 🧱 Arquitetura e Padrões
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🗂️ Componentes
+Os componentes seguem uma organização baseada em arquivos separados por função:
 
-## Expanding the ESLint configuration
+- `.controller.tsx` — Lógica de estado, efeitos e callbacks.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `.view.tsx` — JSX e estrutura visual.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- `.spec.tsx` — Testes unitários.
+
+- `index.ts` — Exportação centralizada.
+
+
+### 🔍 Queries
+A pasta `queries/` é organizada por domínio (ex: user, reposList) e contém:
+
+- `hooks/ —` Hooks personalizados para consumo da API.
+
+- `queries.ts` — Funções para chamadas HTTP.
+
+- `types.ts` — Tipagens com TypeScript.
+
+### 🌐 Roteamento
+A pasta `router/` centraliza:
+
+Definições de rotas (`Routes.tsx`)
+
+Tipagens (`RouterTypes.ts`)
+
+O componente principal de roteamento (`Router.tsx`)
+
+___
+
+## 📁 Estrutura de Pastas
+
+```bash
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── NomeDoComponente/
+│   │   │   ├── Nome.controller.tsx
+│   │   │   ├── Nome.view.tsx
+│   │   │   ├── Nome.spec.tsx
+│   │   │   └── index.ts
+│   ├── pages/
+│   │   └── Dashboard/
+│   ├── queries/
+│   │   ├── reposList/
+│   │   └── user/
+│   ├── router/
+│   ├── services/
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── setupTests.ts
+│   └── vite-env.d.ts
+├── index.html
+├── eslint.config.js
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── README.md
 ```
+___
+## ✅ Benefícios da Arquitetura
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+| Aspecto                      | Benefício                                                  |
+| ---------------------------- | ---------------------------------------------------------- |
+| Separação View/Controller    | Facilita manutenção, testes e clareza de responsabilidades |
+| Modularidade                 | Componentes e páginas isoladas e reutilizáveis             |
+| Escalabilidade               | Permite crescimento sem comprometer o código existente     |
+| Testabilidade                | Arquivos `.spec.tsx` dedicados por componente              |
+| Clareza em dados/API         | Queries organizadas por domínio                            |
+| Tipagem forte com TypeScript | Reduz erros, melhora DX com autocomplete e validações      |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🚀 Como rodar o projeto
+```bash
+# 1. Clone o repositório
+git clone https://github.com/rb-cesar/github-dashboard.git
+cd github-dashboard
+
+# 2. Instale as dependências
+yarn install
+# ou
+npm install
+
+# 3. Rode o projeto
+yarn dev
+# ou
+npm run dev
+
 ```
